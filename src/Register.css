@@ -176,7 +176,9 @@
   position: absolute;
   top: 0;
   left: 0;
-  filter: contrast(1.15) saturate(1.1) brightness(1.05);
+  transform: scale(1.2);
+  transform-origin: center center;
+  filter: contrast(1.2) saturate(1.15) brightness(1.05);
 }
 
 .image-overlay {
