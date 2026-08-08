@@ -148,12 +148,27 @@ const DashboardContent = ({ onOpenModal, projects, onSelectProject }) => {
       </div>
 
 
+
     </div>
   );
 };
 
+const PageSkeleton = () => (
+  <div className="dashboard-content" style={{ padding: '24px 48px 60px' }}>
+    <div className="skeleton-pulse skeleton-header" />
+    <div className="skeleton-pulse skeleton-subtitle" />
+    <div className="skeleton-grid">
+      <div className="skeleton-pulse skeleton-card" />
+      <div className="skeleton-pulse skeleton-card" />
+      <div className="skeleton-pulse skeleton-card" />
+    </div>
+  </div>
+);
+
 export default function App() {
   const [isRegistered, setIsRegistered] = useState(false);
+  const [isAppLoading, setIsAppLoading] = useState(false);
+  const [isProjectLoading, setIsProjectLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
@@ -163,8 +178,32 @@ export default function App() {
     setProjects(prev => [newProject, ...prev]);
   };
 
+  const handleRegister = () => {
+    setIsRegistered(true);
+    setIsAppLoading(true);
+    setTimeout(() => {
+      setIsAppLoading(false);
+    }, 5000);
+  };
+
+  const handleSelectProject = (project) => {
+    setIsProjectLoading(true);
+    setTimeout(() => {
+      setSelectedProject(project);
+      setIsProjectLoading(false);
+    }, 5000);
+  };
+
+  const handleBackToDashboard = () => {
+    setIsAppLoading(true);
+    setSelectedProject(null);
+    setTimeout(() => {
+      setIsAppLoading(false);
+    }, 5000);
+  };
+
   if (!isRegistered) {
-    return <Register onRegister={() => setIsRegistered(true)} />;
+    return <Register onRegister={handleRegister} />;
   }
 
   // When a call is active, render ONLY the call room — no shell, no sidebar
@@ -185,17 +224,19 @@ export default function App() {
       <Sidebar />
       <main className="main-content">
         <Header onOpenModal={() => setIsModalOpen(true)} />
-        {selectedProject ? (
+        {isAppLoading || isProjectLoading ? (
+          <PageSkeleton />
+        ) : selectedProject ? (
           <ProjectDetails
             project={selectedProject}
-            onBack={() => setSelectedProject(null)}
+            onBack={handleBackToDashboard}
             onStartCall={(session) => setCallSession(session)}
           />
         ) : (
           <DashboardContent
             onOpenModal={() => setIsModalOpen(true)}
             projects={projects}
-            onSelectProject={setSelectedProject}
+            onSelectProject={handleSelectProject}
           />
         )}
       </main>
