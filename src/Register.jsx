@@ -15,8 +15,8 @@ const Register = ({ onRegister }) => {
           
           <hr className="register-hr" />
           
-          <h1 className="register-title">Register Now</h1>
-          <p className="register-subtitle">You may use social sites for more fluid experience</p>
+          <h1 className="register-title">Try Interactive Demo</h1>
+          <p className="register-subtitle">Use a social account for a fluid experience since this is a prototype.</p>
           
           <button className="google-btn" onClick={onRegister}>
             <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -25,23 +25,19 @@ const Register = ({ onRegister }) => {
               <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
               <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
             </svg>
-            Register with Google
+            Access with Google
           </button>
           
           <div className="divider">
-            <span className="divider-text">or Register using your phone number</span>
+            <span className="divider-text">or continue using your first name</span>
           </div>
           
           <div className="input-group">
-            <label>Phone Number</label>
-            <input type="tel" placeholder="+1-000-000-0000" />
+            <label>First Name</label>
+            <input type="text" placeholder="e.g. John" />
           </div>
           
-          <button className="submit-btn" onClick={onRegister}>Create account</button>
-          
-          <p className="login-link">
-            Already have an account? <span onClick={onRegister}>Log In</span>
-          </p>
+          <button className="submit-btn" onClick={onRegister}>Enter Demo</button>
         </div>
 
         {/* Right Image Section */}
