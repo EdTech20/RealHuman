@@ -180,7 +180,7 @@ export default function ProjectDetails({ project, onBack, onStartCall }) {
             </div>
             <div className="pd-stat-info">
               <span className="pd-stat-label">Knowledge Files</span>
-              <span className="pd-stat-value">3</span>
+              <span className="pd-stat-value">0</span>
               <span className="pd-stat-desc">Files</span>
             </div>
           </div>
@@ -191,7 +191,7 @@ export default function ProjectDetails({ project, onBack, onStartCall }) {
             </div>
             <div className="pd-stat-info">
               <span className="pd-stat-label">Conversations</span>
-              <span className="pd-stat-value">12</span>
+              <span className="pd-stat-value">0</span>
               <span className="pd-stat-desc">Total</span>
             </div>
           </div>
@@ -202,7 +202,7 @@ export default function ProjectDetails({ project, onBack, onStartCall }) {
             </div>
             <div className="pd-stat-info">
               <span className="pd-stat-label">Reports</span>
-              <span className="pd-stat-value">12</span>
+              <span className="pd-stat-value">0</span>
               <span className="pd-stat-desc">Generated</span>
             </div>
           </div>
@@ -234,7 +234,7 @@ export default function ProjectDetails({ project, onBack, onStartCall }) {
                   <div className="pd-spec-item">
                     <div className="pd-spec-icon"><BookIcon /></div>
                     <span className="pd-spec-label">Knowledge</span>
-                    <span className="pd-spec-val">3 Files</span>
+                    <span className="pd-spec-val">0 Files</span>
                   </div>
                 </div>
                 
@@ -251,26 +251,8 @@ export default function ProjectDetails({ project, onBack, onStartCall }) {
                 <h3>Recent Conversations</h3>
                 <a href="#" className="pd-link">View all</a>
               </div>
-              <div className="pd-conversation-list">
-                {[
-                  { initials: 'JD', name: 'John Doe Interview', date: 'Yesterday', color: '#e0e7ff', text: '#4f46e5' },
-                  { initials: 'SS', name: 'Sarah Smith Interview', date: '2 days ago', color: '#ffedd5', text: '#ea580c' },
-                  { initials: 'MT', name: 'Michael Taylor Interview', date: '5 days ago', color: '#dbeafe', text: '#2563eb' }
-                ].map((conv, i) => (
-                  <div key={i} className="pd-conversation-item">
-                    <div className="pd-conv-avatar" style={{ backgroundColor: conv.color, color: conv.text }}>
-                      {conv.initials}
-                    </div>
-                    <div className="pd-conv-info">
-                      <h4>{conv.name}</h4>
-                      <div className="pd-conv-status">
-                        <span className="pd-status-dot"></span> Completed
-                      </div>
-                    </div>
-                    <div className="pd-conv-date">{conv.date}</div>
-                    <ChevronRight />
-                  </div>
-                ))}
+              <div className="pd-conversation-list" style={{ textAlign: 'center', padding: '2rem 0', color: 'var(--text-muted)' }}>
+                No recent conversation
               </div>
             </div>
 

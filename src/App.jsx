@@ -38,7 +38,9 @@ const MoreIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
 );
 
-const Sidebar = () => {
+const Sidebar = ({ userName }) => {
+  const firstLetter = userName ? userName.charAt(0).toUpperCase() : 'G';
+  
   return (
     <aside className="sidebar">
       <div className="sidebar-top">
@@ -61,10 +63,9 @@ const Sidebar = () => {
       </div>
       
       <div className="user-profile">
-        <img src="/assets/avatar.png" alt="Dickson Edor" className="avatar" />
+        <div className="letter-avatar">{firstLetter}</div>
         <div className="user-info">
-          <span className="user-name">Dickson Edor</span>
-          <span className="user-plan">Pro Plan</span>
+          <span className="user-name">{userName || 'Guest'}</span>
         </div>
         <ChevronDownIcon />
       </div>
@@ -72,7 +73,8 @@ const Sidebar = () => {
   );
 };
 
-const Header = ({ onOpenModal }) => {
+const Header = ({ onOpenModal, userName }) => {
+  const firstLetter = userName ? userName.charAt(0).toUpperCase() : 'G';
   return (
     <header className="header">
       <div className="header-right">
@@ -84,7 +86,7 @@ const Header = ({ onOpenModal }) => {
           <BellIcon />
         </button>
         <div className="header-user">
-          <img src="/assets/avatar.png" alt="Profile" className="avatar-small" />
+          <div className="letter-avatar-small">{firstLetter}</div>
           <ChevronDownIcon />
         </div>
       </div>
@@ -92,11 +94,11 @@ const Header = ({ onOpenModal }) => {
   );
 };
 
-const DashboardContent = ({ onOpenModal, projects, onSelectProject }) => {
+const DashboardContent = ({ onOpenModal, projects, onSelectProject, userName }) => {
   return (
     <div className="dashboard-content">
       <div className="greeting-section">
-        <h1 className="greeting-title">Good afternoon, Dickson <span className="wave">👋</span></h1>
+        <h1 className="greeting-title">Good afternoon, {userName || 'Guest'} <span className="wave">👋</span></h1>
         <p className="greeting-subtitle">Create AI humans for conversations, meetings, teaching, recruiting and more.</p>
       </div>
 
@@ -166,6 +168,7 @@ const PageSkeleton = () => (
 );
 
 export default function App() {
+  const [userName, setUserName] = useState('');
   const [isRegistered, setIsRegistered] = useState(false);
   const [isAppLoading, setIsAppLoading] = useState(false);
   const [isProjectLoading, setIsProjectLoading] = useState(false);
@@ -178,7 +181,8 @@ export default function App() {
     setProjects(prev => [newProject, ...prev]);
   };
 
-  const handleRegister = () => {
+  const handleRegister = (name) => {
+    setUserName(name);
     setIsRegistered(true);
     setIsAppLoading(true);
     setTimeout(() => {
@@ -221,9 +225,9 @@ export default function App() {
 
   return (
     <div className="app-container">
-      <Sidebar />
+      <Sidebar userName={userName} />
       <main className="main-content">
-        <Header onOpenModal={() => setIsModalOpen(true)} />
+        <Header onOpenModal={() => setIsModalOpen(true)} userName={userName} />
         {isAppLoading || isProjectLoading ? (
           <PageSkeleton />
         ) : selectedProject ? (
@@ -234,6 +238,7 @@ export default function App() {
           />
         ) : (
           <DashboardContent
+            userName={userName}
             onOpenModal={() => setIsModalOpen(true)}
             projects={projects}
             onSelectProject={handleSelectProject}
