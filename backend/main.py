@@ -79,7 +79,7 @@ async def get_anam_session_token(request: Request):
     # replaces the saved persona instructions. personaId alone would load the
     # saved prompt and only partially override it.
     persona_config: dict = {
-        "avatarId":    "290ef1d5-9201-40f4-8c88-394a6317f10d",  # Evelyn
+        "avatarId":    anam_persona_id,
         "avatarModel": "cara-4",
         "voiceId":     "04965b9e-ff4c-4b54-a4dc-fba6e458c760",  # Astrid
         "llmId":       "a7cf662c-2ace-4de1-a21e-ef0fbf144bb7",  # GPT OSS 120B
