@@ -29,6 +29,18 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="RealHuman API", lifespan=lifespan)
 
+from fastapi.responses import JSONResponse
+
+@app.exception_handler(Exception)
+async def global_exception_handler(request: Request, exc: Exception):
+    print(f"Unhandled Exception on {request.url}: {exc}")
+    import traceback
+    traceback.print_exc()
+    return JSONResponse(
+        status_code=500,
+        content={"detail": f"Internal Server Error: {str(exc)}"},
+    )
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
