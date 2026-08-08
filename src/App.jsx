@@ -4,6 +4,7 @@ import logoImg from './assets/logo.png';
 import CreateProjectModal, { projectTypes } from './CreateProjectModal';
 import ProjectDetails from './ProjectDetails';
 import CallRoom from './CallRoom';
+import Register from './Register';
 
 const ProjectsIcon = () => (
   <svg className="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
@@ -152,6 +153,7 @@ const DashboardContent = ({ onOpenModal, projects, onSelectProject }) => {
 };
 
 export default function App() {
+  const [isRegistered, setIsRegistered] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
@@ -160,6 +162,10 @@ export default function App() {
   const handleCreateProject = (newProject) => {
     setProjects(prev => [newProject, ...prev]);
   };
+
+  if (!isRegistered) {
+    return <Register onRegister={() => setIsRegistered(true)} />;
+  }
 
   // When a call is active, render ONLY the call room — no shell, no sidebar
   if (callSession) {
