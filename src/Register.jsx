@@ -13,6 +13,8 @@ const Register = ({ onRegister }) => {
             <img src={logo} alt="RealHuman Logo" />
           </div>
           
+          <hr className="register-hr" />
+          
           <h1 className="register-title">Register Now</h1>
           <p className="register-subtitle">You may use social sites for more fluid experience</p>
           
