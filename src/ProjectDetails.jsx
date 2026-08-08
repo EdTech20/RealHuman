@@ -86,7 +86,8 @@ export default function ProjectDetails({ project, onBack, onStartCall }) {
     setIsStarting(true);
     setStartError(null);
     try {
-      const response = await fetch('http://localhost:8000/api/projects/create', {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+      const response = await fetch(`${apiUrl}/api/projects/create`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

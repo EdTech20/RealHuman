@@ -98,7 +98,8 @@ export default function CallRoom({ roomUrl, token, projectName, systemPrompt, on
 
   const startSession = async () => {
     try {
-      const tokenRes = await fetch('http://localhost:8000/api/anam/session-token', {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+      const tokenRes = await fetch(`${apiUrl}/api/anam/session-token`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ systemPrompt: systemPrompt || '' }),
