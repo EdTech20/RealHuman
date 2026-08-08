@@ -61,8 +61,9 @@ class ProjectCreateRequest(BaseModel):
 # Anam session token that it can safely use with the JS SDK directly in the browser.
 @app.post("/api/anam/session-token")
 async def get_anam_session_token(request: Request):
-    anam_api_key    = os.getenv("ANAM_API_KEY", "").strip()
-    anam_persona_id = os.getenv("ANAM_AVATAR_ID", "").strip()
+    import re
+    anam_api_key    = re.sub(r'[\x00-\x1F\x7F]', '', os.getenv("ANAM_API_KEY", ""))
+    anam_persona_id = re.sub(r'[\x00-\x1F\x7F]', '', os.getenv("ANAM_AVATAR_ID", ""))
     if not anam_api_key or not anam_persona_id:
         raise HTTPException(status_code=500, detail="Anam credentials not configured.")
 
@@ -114,9 +115,10 @@ async def create_project(request: ProjectCreateRequest):
         room_name            = f"room-{uuid.uuid4().hex[:8]}"
         participant_identity = f"user-{uuid.uuid4().hex[:8]}"
 
-        api_key     = os.getenv("LIVEKIT_API_KEY", "").strip()
-        api_secret  = os.getenv("LIVEKIT_API_SECRET", "").strip()
-        livekit_url = os.getenv("LIVEKIT_URL", "").strip()
+        import re
+        api_key     = re.sub(r'[\x00-\x1F\x7F]', '', os.getenv("LIVEKIT_API_KEY", ""))
+        api_secret  = re.sub(r'[\x00-\x1F\x7F]', '', os.getenv("LIVEKIT_API_SECRET", ""))
+        livekit_url = re.sub(r'[\x00-\x1F\x7F]', '', os.getenv("LIVEKIT_URL", ""))
         if not api_key or not api_secret or not livekit_url:
             raise ValueError("LiveKit credentials not configured in environment.")
 
