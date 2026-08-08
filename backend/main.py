@@ -79,6 +79,11 @@ async def get_anam_session_token(request: Request):
     # replaces the saved persona instructions. personaId alone would load the
     # saved prompt and only partially override it.
     persona_config = {
+        "name": "Emma",
+        "avatarId": anam_persona_id,
+        "avatarModel": "cara-4",
+        "voiceId": "04965b9e-ff4c-4b54-a4dc-fba6e458c760",  # Astrid
+        "llmId": "a7cf662c-2ace-4de1-a21e-ef0fbf144bb7",  # GPT OSS 120B
         "systemPrompt": system_prompt if system_prompt else (
             "You are Emma, a helpful AI assistant. Be friendly and concise."
         ) + "\n\nIMPORTANT: Always respond in English only, regardless of what language the user speaks.",
@@ -93,7 +98,6 @@ async def get_anam_session_token(request: Request):
                     "Content-Type": "application/json",
                 },
                 json={
-                    "personaId": anam_persona_id,
                     "personaConfig": persona_config
                 },
             ) as resp:
