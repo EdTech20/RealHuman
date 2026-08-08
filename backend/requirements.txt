@@ -1,0 +1,11 @@
+pipecat-ai[livekit,deepgram,openrouter]
+pipecat-anam
+anam
+cohere
+fastapi
+uvicorn
+pydantic
+livekit
+websockets
+python-dotenv
+aiohttp
