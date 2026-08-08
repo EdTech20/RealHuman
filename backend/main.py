@@ -62,10 +62,9 @@ class ProjectCreateRequest(BaseModel):
 @app.post("/api/anam/session-token")
 async def get_anam_session_token(request: Request):
     import re
-    anam_api_key    = re.sub(r'[\x00-\x1F\x7F]', '', os.getenv("ANAM_API_KEY", ""))
-    anam_persona_id = re.sub(r'[\x00-\x1F\x7F]', '', os.getenv("ANAM_AVATAR_ID", ""))
-    if not anam_api_key or not anam_persona_id:
-        raise HTTPException(status_code=500, detail="Anam credentials not configured.")
+    anam_api_key = re.sub(r'[\x00-\x1F\x7F]', '', os.getenv("ANAM_API_KEY", ""))
+    if not anam_api_key:
+        raise HTTPException(status_code=500, detail="Anam API Key not configured.")
 
     # Accept an optional systemPrompt from the frontend to override the persona's default
     body = {}
@@ -80,7 +79,7 @@ async def get_anam_session_token(request: Request):
     # saved prompt and only partially override it.
     persona_config = {
         "name": "Emma",
-        "avatarId": anam_persona_id,
+        "avatarId": "290ef1d5-9201-40f4-8c88-394a6317f10d",  # Evelyn
         "avatarModel": "cara-4",
         "voiceId": "04965b9e-ff4c-4b54-a4dc-fba6e458c760",  # Astrid
         "llmId": "a7cf662c-2ace-4de1-a21e-ef0fbf144bb7",  # GPT OSS 120B
