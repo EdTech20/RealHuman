@@ -62,7 +62,8 @@ class ProjectCreateRequest(BaseModel):
 @app.post("/api/anam/session-token")
 async def get_anam_session_token(request: Request):
     import re
-    anam_api_key = re.sub(r'[\x00-\x1F\x7F]', '', os.getenv("ANAM_API_KEY", ""))
+    # Using the new API key provided by the user directly in code
+    anam_api_key = "N2Q0OGZhZDEtY2YzYS00NjZjLTlhMWItNDExNWVkMzdhNzk0OkYxYUdRUXk2aysrdzdMVXZzQ2JPZE12WFFMejIwZDQ1LzJ4clRDOFIrK1k="
     if not anam_api_key:
         raise HTTPException(status_code=500, detail="Anam API Key not configured.")
 
@@ -79,7 +80,7 @@ async def get_anam_session_token(request: Request):
     # saved prompt and only partially override it.
     persona_config = {
         "name": "Emma",
-        "avatarId": "290ef1d5-9201-40f4-8c88-394a6317f10d",  # Evelyn
+        "avatarId": "e0048945-6519-5316-af20-37729c9e36ca",  # New avatar ID
         "avatarModel": "cara-4",
         "voiceId": "04965b9e-ff4c-4b54-a4dc-fba6e458c760",  # Astrid
         "llmId": "a7cf662c-2ace-4de1-a21e-ef0fbf144bb7",  # GPT OSS 120B
