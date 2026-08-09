@@ -63,7 +63,7 @@ class ProjectCreateRequest(BaseModel):
 async def get_anam_session_token(request: Request):
     import re
     # Using the new API key provided by the user directly in code
-    anam_api_key = "N2Q0OGZhZDEtY2YzYS00NjZjLTlhMWItNDExNWVkMzdhNzk0OkYxYUdRUXk2aysrdzdMVXZzQ2JPZE12WFFMejIwZDQ1LzJ4clRDOFIrK1k="
+    anam_api_key = "MmE1ZWMwYzQtNDMxMC00ZDJiLWJjZjUtODhhNjgzNTIwYmJjOjlNajh5Um9DSzlhd21MSWRONUdzY3JVN0xMaHA1djk4cnZOS0RjSkF2SFU9"
     if not anam_api_key:
         raise HTTPException(status_code=500, detail="Anam API Key not configured.")
 
