@@ -29,10 +29,10 @@ const ArrowRightIcon = () => (
 );
 
 export const projectTypes = [
-  { id: 'interviewing', title: 'Interviewing', desc: 'Candidate screening', icon: <MicIcon />, color: '#633CFF', bg: '#f5f3ff' },
-  { id: 'education', title: 'Education', desc: 'Teaching & tutoring', icon: <EduIcon />, color: '#059669', bg: '#ecfdf5' },
-  { id: 'business', title: 'Business', desc: 'Sales & support', icon: <BusinessIcon />, color: '#d97706', bg: '#fffbeb' },
-  { id: 'custom', title: 'Custom', desc: 'Build your own', icon: <SparklesIcon />, color: '#3b82f6', bg: '#eff6ff' }
+  { id: 'interviewing', title: 'Interviewing', desc: 'Candidate screening', icon: <MicIcon />, color: '#633CFF', bg: '#f5f3ff', disabled: false },
+  { id: 'education', title: 'Education', desc: 'Teaching & tutoring', icon: <EduIcon />, color: '#059669', bg: '#ecfdf5', disabled: true },
+  { id: 'business', title: 'Business', desc: 'Sales & support', icon: <BusinessIcon />, color: '#d97706', bg: '#fffbeb', disabled: true },
+  { id: 'custom', title: 'Custom', desc: 'Build your own', icon: <SparklesIcon />, color: '#3b82f6', bg: '#eff6ff', disabled: true }
 ];
 
 export default function CreateProjectModal({ isOpen, onClose, onCreateProject }) {
@@ -95,7 +95,10 @@ export default function CreateProjectModal({ isOpen, onClose, onCreateProject })
                 <div 
                   key={type.id}
                   className={`type-card ${selectedType === type.id ? 'selected' : ''}`}
-                  onClick={() => setSelectedType(type.id)}
+                  onClick={() => {
+                    if (!type.disabled) setSelectedType(type.id);
+                  }}
+                  style={type.disabled ? { opacity: 0.5, cursor: 'not-allowed' } : {}}
                 >
                   {selectedType === type.id && <CheckCircleIcon />}
                   <div className="type-icon" style={{ color: type.color, backgroundColor: type.bg }}>
