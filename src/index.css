@@ -1204,3 +1204,116 @@ body {
   width: 48px;
   height: 48px;
 }
+
+/* =========================================
+   RESPONSIVE DESIGN (MOBILE)
+   ========================================= */
+@media (max-width: 768px) {
+  /* App Shell & Sidebar */
+  .app-container {
+    flex-direction: column;
+    overflow-y: auto;
+    height: 100vh;
+  }
+  .sidebar {
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: 16px;
+    display: none; /* Hide sidebar completely on very small screens for now to focus on main content */
+  }
+  .main-content {
+    overflow-y: visible;
+  }
+  .header {
+    padding: 0 16px;
+    height: 60px;
+    justify-content: space-between;
+  }
+  
+  /* Dashboard Content */
+  .dashboard-content {
+    padding: 16px;
+  }
+  .greeting-title {
+    font-size: 24px;
+  }
+  .greeting-section {
+    margin-bottom: 32px;
+  }
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .bottom-banner .banner-content {
+    flex-direction: column;
+    padding: 24px;
+    text-align: center;
+  }
+  .banner-illustration {
+    margin-right: 0;
+    margin-bottom: 24px;
+  }
+  
+  /* Project Details */
+  .project-details {
+    padding-bottom: 24px;
+  }
+  .pd-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .pd-header-right {
+    width: 100%;
+  }
+  .pd-btn-start {
+    width: 100%;
+    justify-content: center;
+  }
+  .pd-stats-row {
+    grid-template-columns: 1fr 1fr; /* 2x2 grid */
+    gap: 12px;
+  }
+  .pd-stat-card {
+    padding: 12px;
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+  .pd-main-grid {
+    grid-template-columns: 1fr;
+  }
+  .pd-sidebar-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .pd-tabs {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  
+  /* Modals */
+  .modal-content {
+    flex-direction: column;
+    max-height: 95vh;
+  }
+  .modal-left {
+    width: 100%;
+    padding: 24px;
+    height: 200px;
+  }
+  .modal-right {
+    padding: 24px;
+  }
+  .project-types-grid {
+    grid-template-columns: 1fr 1fr; /* 2x2 for types on mobile */
+  }
+  
+  /* Skeleton Grid */
+  .skeleton-grid {
+    grid-template-columns: 1fr;
+  }
+}

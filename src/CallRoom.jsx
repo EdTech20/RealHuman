@@ -199,9 +199,6 @@ export default function CallRoom({ roomUrl, token, projectName, systemPrompt, on
         <button className="cr-nav-btn" onClick={handleEndCall}>
           <ArrowLeftIcon /> Exit
         </button>
-        <button className="cr-nav-btn">
-          Start from scratch <ArrowRightIcon />
-        </button>
       </nav>
 
       <main className="cr-main">

@@ -222,11 +222,12 @@
 /* Responsive */
 @media (max-width: 768px) {
   .register-card {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
   
   .register-image-section {
-    display: none; /* Hide image on mobile */
+    min-height: 280px;
+    width: 100%;
   }
   
   .register-form-section {
