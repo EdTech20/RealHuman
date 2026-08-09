@@ -167,6 +167,48 @@ const PageSkeleton = () => (
   </div>
 );
 
+const ProjectDetailsSkeleton = () => (
+  <div className="project-details" style={{ padding: '24px 48px 60px', width: '100%' }}>
+    <div className="pd-header-nav">
+      <div className="skeleton-pulse" style={{ width: '120px', height: '20px', borderRadius: '4px' }} />
+    </div>
+    <div className="pd-header">
+      <div className="pd-header-left">
+        <div className="skeleton-pulse pd-main-icon" style={{ border: 'none' }} />
+        <div className="pd-title-group">
+          <div className="skeleton-pulse" style={{ width: '200px', height: '32px', borderRadius: '6px' }} />
+          <div className="skeleton-pulse" style={{ width: '150px', height: '20px', borderRadius: '4px' }} />
+        </div>
+      </div>
+      <div className="pd-header-right">
+        <div className="skeleton-pulse pd-btn" style={{ width: '180px', height: '44px', borderRadius: '8px', border: 'none' }} />
+      </div>
+    </div>
+    
+    <div className="pd-tabs" style={{ display: 'flex', gap: '24px', paddingBottom: '16px', marginBottom: '24px' }}>
+      <div className="skeleton-pulse" style={{ width: '80px', height: '24px', borderRadius: '4px' }} />
+      <div className="skeleton-pulse" style={{ width: '80px', height: '24px', borderRadius: '4px' }} />
+      <div className="skeleton-pulse" style={{ width: '80px', height: '24px', borderRadius: '4px' }} />
+    </div>
+
+    <div className="pd-content">
+      <div className="pd-stats-row">
+        {[1, 2, 3, 4].map(i => (
+          <div key={i} className="skeleton-pulse pd-stat-card" style={{ height: '90px', border: 'none' }} />
+        ))}
+      </div>
+      
+      <div className="pd-main-grid">
+        <div className="skeleton-pulse pd-human-card" style={{ height: '400px', border: 'none' }} />
+        <div className="pd-sidebar-grid">
+          <div className="skeleton-pulse pd-conversations-card" style={{ height: '200px', border: 'none' }} />
+          <div className="skeleton-pulse pd-actions-card" style={{ height: '180px', border: 'none' }} />
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
 export default function App() {
   const [userName, setUserName] = useState('');
   const [isRegistered, setIsRegistered] = useState(false);
@@ -228,8 +270,10 @@ export default function App() {
       <Sidebar userName={userName} />
       <main className="main-content">
         <Header onOpenModal={() => setIsModalOpen(true)} userName={userName} />
-        {isAppLoading || isProjectLoading ? (
+        {isAppLoading ? (
           <PageSkeleton />
+        ) : isProjectLoading ? (
+          <ProjectDetailsSkeleton />
         ) : selectedProject ? (
           <ProjectDetails
             project={selectedProject}
