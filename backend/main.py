@@ -75,9 +75,15 @@ async def get_anam_session_token(request: Request):
         pass
     system_prompt = body.get("systemPrompt", "").strip()
 
-    # Use the user's Persona ID instead of passing individual avatar/voice IDs
+    # Use a fully inline personaConfig so the user's system prompt completely
+    # replaces any saved persona instructions. We use the raw avatar/voice IDs
+    # instead of a personaId so Anam doesn't blend it with a default prompt.
     persona_config = {
-        "personaId": "e0048945-6519-5316-af20-37729c9e36ca",
+        "name": "Emma",
+        "avatarId": "290ef1d5-9201-40f4-8c88-394a6317f10d",
+        "avatarModel": "cara-4",
+        "voiceId": "04965b9e-ff4c-4b54-a4dc-fba6e458c760",
+        "llmId": "a7cf662c-2ace-4de1-a21e-ef0fbf144bb7",
         "systemPrompt": system_prompt if system_prompt else (
             "You are Emma, a helpful AI assistant. Be friendly and concise."
         ) + "\n\nIMPORTANT: Always respond in English only, regardless of what language the user speaks.",
