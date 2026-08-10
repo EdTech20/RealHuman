@@ -79,6 +79,16 @@ export default function CallRoom({ roomUrl, token, projectName, systemPrompt, on
     return () => cleanup();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      cleanup();
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
+
   const cleanup = () => {
     phaseTimers.current.forEach(clearTimeout);
     try { anamClientRef.current?.stopStreaming(); } catch (_) {}
